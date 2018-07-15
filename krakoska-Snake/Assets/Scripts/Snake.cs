@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour {
 
-    public GameObject snakePrefab;
-    public Snake Head;
-    public Snake Tail;
-    public int NESW;  //directions
-    public Vector2 nextPos;
+    private Snake next;  //Kinda LinkedList
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void setNext(Snake IN)
+    {
+        next = IN;
+    }
+
+    public Snake getNext()
+    {
+        return next;
+    }
+
+    public void removeTail()
+    {
+        Destroy(this.gameObject);
+    }
 }
