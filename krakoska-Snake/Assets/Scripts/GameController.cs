@@ -1,8 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
+
+    public int xBound;   //We will use it for position range for our food to spawn
+    public int yBound;
+    public GameObject foodPrefab;
+    public GameObject currentFood;
+
+    public int score;
+
+    public int maxSize;
+    public int currentSize;  //We will check if they are equal and if they will thats how big we want our snake
 
     public GameObject snakePrefab;
     public Snake head;
@@ -10,19 +21,37 @@ public class GameController : MonoBehaviour {
     public int NESW;  //directions
     public Vector2 nextPos;
 
+    void OnEnable()
+    {
+        Snake.hit += hit;
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start() {
         InvokeRepeating("TimerInvoke", 0, .5f);  //(WhatWe Invoke, StartTime, TimeRate)
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        foodFunction();
+    }
+
+    private void OnDisable()
+    {
+        Snake.hit -= hit;
+    }
+
+    // Update is called once per frame
+    void Update () {
         changeDirections();
 	}
 
     void TimerInvoke()
     {
         Movement();
+        if(currentSize >= maxSize)
+        {
+            tailFunction();  //We keep snake for getting too large
+        }else
+        {
+            currentSize++;
+        }
     }
 
     void Movement()
@@ -73,5 +102,57 @@ public class GameController : MonoBehaviour {
         {
             NESW = 3;
         }
+    }
+
+    void tailFunction()
+    {
+        Snake tempSnake = tail;
+        tail = tail.getNext();  //We save current tail in next object so we can remove current object
+        tempSnake.removeTail();
+    }
+
+    void foodFunction()  //ToDO food shouldnt spawn on snake
+    {
+        int xPos = Random.Range(-xBound, xBound);
+        int yPos = Random.Range(-yBound, yBound);
+
+        //Instantiate new food from prefab
+        currentFood = (GameObject)Instantiate(foodPrefab, new Vector2(xPos, yPos), transform.rotation); //Casting -> (Object we wanna spawn, new Vector, Rotation)
+        StartCoroutine(checkRender(currentFood));
+    }
+
+
+    IEnumerator checkRender(GameObject IN)  //It secures us for situation when spawn  food outside of camera view
+    {
+        yield return new WaitForEndOfFrame();
+        if(IN.GetComponent<Renderer>().isVisible == false)
+        {
+            if(IN.tag == "Food" || IN.tag == "Snake")
+            {
+                Destroy(IN);
+                foodFunction();
+            }
+        }
+
+    }
+
+    void hit(string WhatWasSent)
+    {
+        if(WhatWasSent == "Food")
+        {
+            foodFunction();
+            maxSize++;
+            score++;
+        }
+        if(WhatWasSent == "Snake")
+        {
+            CancelInvoke("TimerInvoke"); //We stop invokin method
+            exit();
+        }
+    }
+
+    public void exit() 
+    {
+        SceneManager.LoadScene(0);  //0 index of main menu screen
     }
 }
