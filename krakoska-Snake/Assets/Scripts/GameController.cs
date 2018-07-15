@@ -46,5 +46,9 @@ public class GameController : MonoBehaviour {
                 break;
         }
         temp = (GameObject)Instantiate(snakePrefab, nextPos, transform.rotation);
+        head.setNext(temp.GetComponent<Snake>());  //We take newly instantiated Snake obj and save to next varaiable of current head
+        head = temp.GetComponent<Snake>();
+
+        return;
     }
 }

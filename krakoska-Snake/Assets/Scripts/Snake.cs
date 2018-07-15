@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Snake next;  //Kinda LinkedList
+
+    public void setNext(Snake IN)
+    {
+        next = IN;
+    }
+
+    public Snake getNext()
+    {
+        return next;
+    }
+
+    public void removeTail()
+    {
+        Destroy(this.gameObject);
+    }
 }
