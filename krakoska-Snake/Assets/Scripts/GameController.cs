@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+    public int maxSize;
+    public int currentSize;  //We will check if they are equal and if they will thats how big we want our snake
 
     public GameObject snakePrefab;
     public Snake head;
@@ -23,6 +25,13 @@ public class GameController : MonoBehaviour {
     void TimerInvoke()
     {
         Movement();
+        if(currentSize >= maxSize)
+        {
+            tailFunction();  //We keep snake for getting too large
+        }else
+        {
+            currentSize++;
+        }
     }
 
     void Movement()
@@ -73,5 +82,12 @@ public class GameController : MonoBehaviour {
         {
             NESW = 3;
         }
+    }
+
+    void tailFunction()
+    {
+        Snake tempSnake = tail;
+        tail = tail.getNext();  //We save current tail in next object so we can remove current object
+        tempSnake.removeTail();
     }
 }
