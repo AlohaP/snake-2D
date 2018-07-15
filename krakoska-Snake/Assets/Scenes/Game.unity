@@ -140,6 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630abb035f211584c89c5e93f933910f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xBound: 45
+  yBound: 22
+  foodPrefab: {fileID: 1258393415322290, guid: b879041bc9e685d4a9197e123b449c7a, type: 2}
+  currentFood: {fileID: 0}
+  maxSize: 4
+  currentSize: 1
   snakePrefab: {fileID: 1466192293312298, guid: 890c6499edcda66448f5132324869b0c,
     type: 2}
   head: {fileID: 917589018}
@@ -297,11 +303,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4397870004400098, guid: 890c6499edcda66448f5132324869b0c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -28.7
       objectReference: {fileID: 0}
     - target: {fileID: 4397870004400098, guid: 890c6499edcda66448f5132324869b0c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4397870004400098, guid: 890c6499edcda66448f5132324869b0c, type: 2}
       propertyPath: m_LocalPosition.z
