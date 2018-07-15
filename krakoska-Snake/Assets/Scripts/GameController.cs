@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour {
     public GameObject foodPrefab;
     public GameObject currentFood;
 
+    public int score;
+
     public int maxSize;
     public int currentSize;  //We will check if they are equal and if they will thats how big we want our snake
 
@@ -18,14 +20,24 @@ public class GameController : MonoBehaviour {
     public int NESW;  //directions
     public Vector2 nextPos;
 
+    void OnEnable()
+    {
+        Snake.hit += hit;
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start() {
         InvokeRepeating("TimerInvoke", 0, .5f);  //(WhatWe Invoke, StartTime, TimeRate)
         foodFunction();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDisable()
+    {
+        Snake.hit -= hit;
+    }
+
+    // Update is called once per frame
+    void Update () {
         changeDirections();
 	}
 
@@ -121,5 +133,15 @@ public class GameController : MonoBehaviour {
             }
         }
 
+    }
+
+    void hit(string WhatWasSent)
+    {
+        if(WhatWasSent == "Food")
+        {
+            foodFunction();
+            maxSize++;
+            score++;
+        }
     }
 }
