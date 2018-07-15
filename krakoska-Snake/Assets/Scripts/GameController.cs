@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -143,5 +144,15 @@ public class GameController : MonoBehaviour {
             maxSize++;
             score++;
         }
+        if(WhatWasSent == "Snake")
+        {
+            CancelInvoke("TimerInvoke"); //We stop invokin method
+            exit();
+        }
+    }
+
+    public void exit() 
+    {
+        SceneManager.LoadScene(0);  //0 index of main menu screen
     }
 }
