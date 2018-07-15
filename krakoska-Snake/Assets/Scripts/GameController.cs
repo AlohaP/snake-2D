@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        changeDirections();
 	}
 
     void TimerInvoke()
@@ -50,5 +50,28 @@ public class GameController : MonoBehaviour {
         head = temp.GetComponent<Snake>();
 
         return;
+    }
+
+    void changeDirections()   //Change direction and be sure to not be going to clide inside
+    {
+        if (NESW != 2 && Input.GetKeyDown(KeyCode.W))
+        {
+            NESW = 0;
+        }
+
+        if (NESW != 3 && Input.GetKeyDown(KeyCode.D))
+        {
+            NESW = 1;
+        }
+
+        if (NESW != 0 && Input.GetKeyDown(KeyCode.S))
+        {
+            NESW = 2;
+        }
+
+        if (NESW != 1 && Input.GetKeyDown(KeyCode.A))
+        {
+            NESW = 3;
+        }
     }
 }

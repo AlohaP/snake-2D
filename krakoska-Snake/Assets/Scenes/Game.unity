@@ -113,6 +113,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &454178256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 454178258}
+  - component: {fileID: 454178257}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &454178257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 454178256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630abb035f211584c89c5e93f933910f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snakePrefab: {fileID: 1466192293312298, guid: 890c6499edcda66448f5132324869b0c,
+    type: 2}
+  head: {fileID: 917589018}
+  tail: {fileID: 917589018}
+  NESW: 0
+  nextPos: {x: 0, y: 0}
+--- !u!4 &454178258
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 454178256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.256507, y: -10.569451, z: -0.69488317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917589018 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114451867894793832, guid: 890c6499edcda66448f5132324869b0c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2004957958}
+  m_Script: {fileID: 11500000, guid: 964ea336a81b01c40897c0c732dc5694, type: 3}
 --- !u!1 &1030139247
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,17 +327,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4397870004400098, guid: 890c6499edcda66448f5132324869b0c, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4397870004400098, guid: 890c6499edcda66448f5132324869b0c, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4397870004400098, guid: 890c6499edcda66448f5132324869b0c, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.7
+    - target: {fileID: 1466192293312298, guid: 890c6499edcda66448f5132324869b0c, type: 2}
+      propertyPath: m_TagString
+      value: Snake
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 890c6499edcda66448f5132324869b0c, type: 2}
