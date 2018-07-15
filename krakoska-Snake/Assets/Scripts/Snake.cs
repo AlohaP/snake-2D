@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour {
 
-    public GameObject snakePrefab;
-    public Snake Head;
-    public Snake Tail;
-    public int NESW;  //directions
-    public Vector2 nextPos;
-
 	// Use this for initialization
 	void Start () {
 		
