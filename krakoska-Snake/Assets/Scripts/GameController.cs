@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour {
     void TimerInvoke()
     {
         Movement();
+        StartCoroutine(checkVisible());
         if(currentSize >= maxSize)
         {
             tailFunction();  //We keep snake for getting too large
@@ -163,4 +164,32 @@ public class GameController : MonoBehaviour {
     {
         SceneManager.LoadScene(0);  //0 index of main menu screen
     }
+
+    void wrap()
+    {
+        if (NESW == 0) {
+            head.transform.position = new Vector2(head.transform.position.x, -(head.transform.position.y - 1));
+        }
+        else if (NESW == 1)
+        {
+            head.transform.position = new Vector2(-(head.transform.position.x - 1), head.transform.position.y);
+        }
+        else if (NESW == 2) {
+            head.transform.position = new Vector2(head.transform.position.x, -(head.transform.position.y + 1));
+        }
+        else if (NESW == 3)
+        {
+            head.transform.position = new Vector2(-(head.transform.position.x + 1), head.transform.position.y);
+        }
+    }
+
+    IEnumerator checkVisible()
+    {
+        yield return new WaitForEndOfFrame();
+        if (!head.GetComponent<Renderer>().isVisible) //If its false execute
+        {
+            wrap();
+        }
+    }
+
 }
