@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        InvokeRepeating("TimerInvoke", 0, .5f);  //(WhatWe Invoke, StartTime, TimeRate)
+        InvokeRepeating("TimerInvoke", 0, .35f);  //(WhatWe Invoke, StartTime, TimeRate)
         foodFunction();
     }
 
@@ -65,16 +65,16 @@ public class GameController : MonoBehaviour {
         switch (NESW)
         {
             case 0: //Up
-                nextPos = new Vector2(nextPos.x, nextPos.y + 1);
+                nextPos = new Vector2(nextPos.x, nextPos.y + 2);
                 break;
             case 1: //Rigth
-                nextPos = new Vector2(nextPos.x + 1, nextPos.y);
+                nextPos = new Vector2(nextPos.x + 2, nextPos.y);
                 break;
             case 2: //Down
-                nextPos = new Vector2(nextPos.x, nextPos.y - 1);
+                nextPos = new Vector2(nextPos.x, nextPos.y - 2);
                 break;
             case 3: //Left
-                nextPos = new Vector2(nextPos.x - 1, nextPos.y);
+                nextPos = new Vector2(nextPos.x - 2, nextPos.y);
                 break;
         }
         temp = (GameObject)Instantiate(snakePrefab, nextPos, transform.rotation);
