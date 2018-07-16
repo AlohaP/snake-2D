@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour {
     public Snake tail;
     public int NESW;  //directions
     public Vector2 nextPos;
+    public Text scoreText;
 
     void OnEnable()
     {
@@ -143,6 +145,12 @@ public class GameController : MonoBehaviour {
             foodFunction();
             maxSize++;
             score++;
+            scoreText.text = score.ToString();
+            int temp = PlayerPrefs.GetInt("HighScore");
+            if(score > temp)
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+            }
         }
         if(WhatWasSent == "Snake")
         {
@@ -151,7 +159,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void exit() 
+    public void exit()
     {
         SceneManager.LoadScene(0);  //0 index of main menu screen
     }
